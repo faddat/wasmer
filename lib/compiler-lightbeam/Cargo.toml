@@ -1,0 +1,38 @@
+[package]
+name = "wasmer-compiler-lightbeam"
+version = "2.0.0-rc2"
+description = "Lightbeam compiler for Wasmer WebAssembly runtime"
+categories = ["wasm"]
+keywords = ["wasm", "webassembly", "compiler", "singlepass"]
+authors = ["Jacob Gadikian <jacobgadikian@gmail.com>"]
+repository = "https://github.com/wasmerio/wasmer"
+documentation = "https://docs.rs/wasmer-compiler-singlepass/"
+license = "MIT"
+readme = "README.md"
+edition = "2021"
+
+[dependencies]
+wasmer-compiler = { path = "../compiler", version = "2.0.0-rc2", features = ["translator"], default-features = false }
+wasmer-vm = { path = "../vm", version = "2.0.0-rc2" }
+wasmer-types = { path = "../types", version = "2.0.0-rc2", default-features = false, features = ["std"] }
+rayon = { version = "1.5", optional = true }
+hashbrown = { version = "0.9", optional = true }
+lightbeam = "0.8"
+more-asserts = "0.2"
+dynasm = "1.0"
+dynasmrt = "1.0"
+lazy_static = "1.4"
+byteorder = "1.3"
+smallvec = "1.6"
+loupe = "0.1"
+
+[dev-dependencies]
+target-lexicon = { version = "0.12", default-features = false }
+
+[badges]
+maintenance = { status = "actively-developed" }
+
+[features]
+default = ["std", "rayon"]
+std = ["wasmer-compiler/std", "wasmer-types/std"]
+core = ["hashbrown", "wasmer-types/core"]
